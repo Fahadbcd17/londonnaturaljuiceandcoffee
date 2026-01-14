@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Our Menu | London Fresh Drinks</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <link rel="icon" type="image/x-icon" href="images/favicon.png" />
     <style>
       /* Additional styles for menu page */
       .menu-category {
@@ -57,7 +62,7 @@
         border-radius: 8px;
         padding: 20px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
 
       .menu-item:hover {
@@ -78,16 +83,11 @@
         color: #2c3e50;
       }
 
-      .item-price {
-        font-weight: 700;
-        color: #4caf50;
-        font-size: 1.2rem;
-      }
-
       .item-desc {
         color: #666;
         font-size: 0.95rem;
         margin-bottom: 15px;
+        line-height: 1.5;
       }
 
       .item-tags {
@@ -98,25 +98,26 @@
 
       .tag {
         background-color: #f0f0f0;
-        padding: 3px 10px;
+        padding: 5px 12px;
         border-radius: 20px;
         font-size: 0.8rem;
-        color: #666;
+        color: #444;
+        font-weight: 500;
       }
 
       .tag.vegan {
         background-color: #e8f5e9;
-        color: #4caf50;
+        color: #2e7d32;
       }
 
       .tag.popular {
         background-color: #fff3e0;
-        color: #ff9800;
+        color: #e65100;
       }
 
       .tag.new {
         background-color: #e3f2fd;
-        color: #2196f3;
+        color: #1565c0;
       }
 
       .page-header {
@@ -151,17 +152,80 @@
         font-weight: 500;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
         transition: all 0.3s ease;
+        text-decoration: none;
+        color: #333;
+        border: 2px solid transparent;
       }
 
       .menu-nav-btn:hover,
-      .menu-nav-btn.active {
+      .menu-nav-btn.active,
+      .menu-nav-btn:focus {
         background-color: #4caf50;
         color: white;
+        outline: none;
+        border-color: #2e7d32;
+      }
+
+      .menu-nav-btn:focus {
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
       }
 
       .team-section {
         background-color: white;
         padding: 60px 0;
+      }
+
+      /* Responsive styles */
+      @media (max-width: 768px) {
+        .menu-items {
+          grid-template-columns: 1fr;
+        }
+        
+        .menu-navigation {
+          flex-direction: column;
+          align-items: center;
+          padding: 0 20px;
+        }
+        
+        .menu-nav-btn {
+          width: 100%;
+          max-width: 300px;
+          text-align: center;
+        }
+        
+        .category-title {
+          flex-direction: column;
+          text-align: center;
+          gap: 15px;
+        }
+        
+        .category-icon {
+          margin-right: 0;
+        }
+        
+        .page-content {
+          padding: 40px 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .menu-item {
+          padding: 15px;
+        }
+        
+        .page-header {
+          padding: 40px 0;
+        }
+        
+        .page-header h1 {
+          font-size: 2rem;
+        }
+      }
+
+      /* Focus styles for accessibility */
+      *:focus {
+        outline: 2px solid #4caf50;
+        outline-offset: 2px;
       }
     </style>
   </head>
@@ -177,18 +241,18 @@
           <ul class="nav-menu">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="menu.html" class="active">Menu</a></li>
+            <li><a href="menu.html" class="active" aria-current="page">Menu</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li>
               <a href="contact.html#order" class="btn-order">Order Now</a>
             </li>
           </ul>
 
-          <div class="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </div>
+          <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span class="bar" aria-hidden="true"></span>
+            <span class="bar" aria-hidden="true"></span>
+            <span class="bar" aria-hidden="true"></span>
+          </button>
         </nav>
       </div>
     </header>
@@ -202,33 +266,33 @@
     </section>
 
     <!-- Menu Navigation -->
-    <section class="page-content">
+    <section class="page-content" aria-label="Menu categories">
       <div class="container">
-        <div class="menu-navigation">
-          <a href="#juices" class="menu-nav-btn active">Fruit Juices</a>
+        <nav class="menu-navigation" aria-label="Menu categories navigation">
+          <a href="#juices" class="menu-nav-btn active" aria-current="true">Fruit Juices</a>
           <a href="#sugarcane" class="menu-nav-btn">Sugarcane Juice</a>
           <a href="#coconut" class="menu-nav-btn">Coconut Water</a>
           <a href="#coffee" class="menu-nav-btn">Turkish Coffee</a>
           <a href="#combos" class="menu-nav-btn">Combos & Specials</a>
-        </div>
+        </nav>
 
         <!-- Fruit Juices Section -->
-        <div class="menu-category" id="juices">
+        <section class="menu-category" id="juices" aria-labelledby="juices-heading">
           <div class="category-title">
             <div
               class="category-icon"
               style="background: linear-gradient(135deg, #ff9800, #ff5722)"
+              aria-hidden="true"
             >
               <i class="fas fa-glass-whiskey"></i>
             </div>
-            <h2>Fresh Fruit Juices</h2>
+            <h2 id="juices-heading">Fresh Fruit Juices</h2>
           </div>
 
           <div class="menu-items">
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Classic Orange Juice</h3>
-                <!-- <span class="item-price">£3.50</span> -->
               </div>
               <p class="item-desc">
                 Freshly squeezed oranges, served chilled. Packed with Vitamin C.
@@ -237,12 +301,11 @@
                 <span class="tag vegan">Vegan</span>
                 <span class="tag popular">Most Popular</span>
               </div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Tropical Blend</h3>
-                <!-- <span class="item-price">£4.20</span> -->
               </div>
               <p class="item-desc">
                 A refreshing mix of pineapple, mango, and passion fruit.
@@ -251,12 +314,11 @@
                 <span class="tag vegan">Vegan</span>
                 <span class="tag new">New</span>
               </div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Watermelon Mint</h3>
-                <!-- <span class="item-price">£3.80</span> -->
               </div>
               <p class="item-desc">
                 Fresh watermelon juice with a hint of mint, perfect for summer.
@@ -264,12 +326,11 @@
               <div class="item-tags">
                 <span class="tag vegan">Vegan</span>
               </div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Green Detox</h3>
-                <!-- <span class="item-price">£4.50</span> -->
               </div>
               <p class="item-desc">
                 Kale, spinach, apple, lemon, and ginger for a healthy boost.
@@ -277,12 +338,11 @@
               <div class="item-tags">
                 <span class="tag vegan">Vegan</span>
               </div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Berry Blast</h3>
-                <!-- <span class="item-price">£4.00</span> -->
               </div>
               <p class="item-desc">
                 Strawberries, blueberries, raspberries, and a touch of honey.
@@ -290,12 +350,11 @@
               <div class="item-tags">
                 <span class="tag vegan">Vegan</span>
               </div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Apple Ginger Zing</h3>
-                <!-- <span class="item-price">£3.60</span> -->
               </div>
               <p class="item-desc">
                 Fresh apple juice with a spicy kick of ginger.
@@ -303,27 +362,27 @@
               <div class="item-tags">
                 <span class="tag vegan">Vegan</span>
               </div>
-            </div>
+            </article>
           </div>
-        </div>
+        </section>
 
         <!-- Sugarcane Juice Section -->
-        <div class="menu-category" id="sugarcane">
+        <section class="menu-category" id="sugarcane" aria-labelledby="sugarcane-heading">
           <div class="category-title">
             <div
               class="category-icon"
               style="background: linear-gradient(135deg, #8bc34a, #4caf50)"
+              aria-hidden="true"
             >
               <i class="fas fa-wine-bottle"></i>
             </div>
-            <h2>Sugarcane Juice</h2>
+            <h2 id="sugarcane-heading">Sugarcane Juice</h2>
           </div>
 
           <div class="menu-items">
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Classic Sugarcane</h3>
-                <!-- <span class="item-price">£3.80</span> -->
               </div>
               <p class="item-desc">
                 Freshly extracted sugarcane juice, served chilled.
@@ -332,12 +391,11 @@
                 <span class="tag vegan">Vegan</span>
                 <span class="tag popular">Most Popular</span>
               </div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Sugarcane with Lime</h3>
-                <!-- <span class="item-price">£4.00</span> -->
               </div>
               <p class="item-desc">
                 Sugarcane juice with a squeeze of fresh lime for extra zing.
@@ -345,12 +403,11 @@
               <div class="item-tags">
                 <span class="tag vegan">Vegan</span>
               </div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Sugarcane Ginger</h3>
-                <!-- <span class="item-price">£4.10</span> -->
               </div>
               <p class="item-desc">
                 Sugarcane juice infused with fresh ginger for a spicy kick.
@@ -358,12 +415,11 @@
               <div class="item-tags">
                 <span class="tag vegan">Vegan</span>
               </div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Sugarcane Mint</h3>
-                <!-- <span class="item-price">£4.00</span> -->
               </div>
               <p class="item-desc">
                 Refreshing sugarcane juice with fresh mint leaves.
@@ -371,27 +427,27 @@
               <div class="item-tags">
                 <span class="tag vegan">Vegan</span>
               </div>
-            </div>
+            </article>
           </div>
-        </div>
+        </section>
 
         <!-- Coconut Water Section -->
-        <div class="menu-category" id="coconut">
+        <section class="menu-category" id="coconut" aria-labelledby="coconut-heading">
           <div class="category-title">
             <div
               class="category-icon"
               style="background: linear-gradient(135deg, #ffeb3b, #ffc107)"
+              aria-hidden="true"
             >
               <i class="fas fa-cocktail"></i>
             </div>
-            <h2>Coconut Water</h2>
+            <h2 id="coconut-heading">Coconut Water</h2>
           </div>
 
           <div class="menu-items">
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Young Coconut Water</h3>
-                <!-- <span class="item-price">£4.50</span> -->
               </div>
               <p class="item-desc">
                 Pure coconut water from young coconuts, served in the shell.
@@ -400,12 +456,11 @@
                 <span class="tag vegan">Vegan</span>
                 <span class="tag popular">Most Popular</span>
               </div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Coconut with Pineapple</h3>
-                <!-- <span class="item-price">£4.80</span> -->
               </div>
               <p class="item-desc">
                 Coconut water blended with fresh pineapple for a tropical twist.
@@ -413,12 +468,11 @@
               <div class="item-tags">
                 <span class="tag vegan">Vegan</span>
               </div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Coconut Lime Mint</h3>
-                <!-- <span class="item-price">£4.70</span> -->
               </div>
               <p class="item-desc">
                 Coconut water infused with lime and fresh mint leaves.
@@ -426,12 +480,11 @@
               <div class="item-tags">
                 <span class="tag vegan">Vegan</span>
               </div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Coconut Aloe Vera</h3>
-                <!-- <span class="item-price">£5.00</span> -->
               </div>
               <p class="item-desc">
                 Coconut water with aloe vera gel for added health benefits.
@@ -439,27 +492,27 @@
               <div class="item-tags">
                 <span class="tag vegan">Vegan</span>
               </div>
-            </div>
+            </article>
           </div>
-        </div>
+        </section>
 
         <!-- Turkish Coffee Section -->
-        <div class="menu-category" id="coffee">
+        <section class="menu-category" id="coffee" aria-labelledby="coffee-heading">
           <div class="category-title">
             <div
               class="category-icon"
               style="background: linear-gradient(135deg, #795548, #5d4037)"
+              aria-hidden="true"
             >
               <i class="fas fa-coffee"></i>
             </div>
-            <h2>Turkish Sand Coffee</h2>
+            <h2 id="coffee-heading">Turkish Sand Coffee</h2>
           </div>
 
           <div class="menu-items">
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Classic Turkish Coffee</h3>
-                <!-- <span class="item-price">£3.20</span> -->
               </div>
               <p class="item-desc">
                 Traditional Turkish coffee brewed in hot sand, served with a
@@ -468,12 +521,11 @@
               <div class="item-tags">
                 <span class="tag popular">Most Popular</span>
               </div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Cardamom Turkish Coffee</h3>
-                <!-- <span class="item-price">£3.50</span> -->
               </div>
               <p class="item-desc">
                 Turkish coffee with a hint of cardamom for aromatic flavor.
@@ -481,23 +533,21 @@
               <div class="item-tags">
                 <span class="tag new">New</span>
               </div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Turkish Coffee with Rose</h3>
-                <!-- <span class="item-price">£3.70</span> -->
               </div>
               <p class="item-desc">
                 Delicate rose-infused Turkish coffee for a floral aroma.
               </p>
               <div class="item-tags"></div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Turkish Coffee with Lokum</h3>
-                <!-- <span class="item-price">£4.50</span> -->
               </div>
               <p class="item-desc">
                 Traditional Turkish coffee served with a piece of Turkish
@@ -506,27 +556,27 @@
               <div class="item-tags">
                 <span class="tag popular">Most Popular</span>
               </div>
-            </div>
+            </article>
           </div>
-        </div>
+        </section>
 
         <!-- Combos Section -->
-        <div class="menu-category" id="combos">
+        <section class="menu-category" id="combos" aria-labelledby="combos-heading">
           <div class="category-title">
             <div
               class="category-icon"
               style="background: linear-gradient(135deg, #9c27b0, #673ab7)"
+              aria-hidden="true"
             >
               <i class="fas fa-star"></i>
             </div>
-            <h2>Combos & Specials</h2>
+            <h2 id="combos-heading">Combos & Specials</h2>
           </div>
 
           <div class="menu-items">
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Refresh Combo</h3>
-                <!-- <span class="item-price">£7.50</span> -->
               </div>
               <p class="item-desc">
                 Any fruit juice + sugarcane juice. Perfect for hot days.
@@ -534,12 +584,11 @@
               <div class="item-tags">
                 <span class="tag vegan">Vegan</span>
               </div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Tropical Escape</h3>
-                <!-- <span class="item-price">£8.20</span> -->
               </div>
               <p class="item-desc">
                 Coconut water + tropical fruit juice. Taste of the tropics.
@@ -547,23 +596,21 @@
               <div class="item-tags">
                 <span class="tag vegan">Vegan</span>
               </div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Energize Combo</h3>
-                <!-- <span class="item-price">£6.50</span> -->
               </div>
               <p class="item-desc">
                 Turkish coffee + orange juice. Perfect morning boost.
               </p>
               <div class="item-tags"></div>
-            </div>
+            </article>
 
-            <div class="menu-item">
+            <article class="menu-item">
               <div class="item-header">
                 <h3 class="item-name">Family Pack</h3>
-                <!-- <span class="item-price">£15.00</span> -->
               </div>
               <p class="item-desc">
                 4 different beverages of your choice. Great for sharing.
@@ -571,9 +618,9 @@
               <div class="item-tags">
                 <span class="tag popular">Most Popular</span>
               </div>
-            </div>
+            </article>
           </div>
-        </div>
+        </section>
       </div>
     </section>
 
@@ -585,9 +632,9 @@
                     <h3>LONDON NATURAL JUICE & COFFEE</h3>
                     <p>Providing fresh, natural drinks. Our commitment is to quality, authenticity, and customer satisfaction.</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/share/17t5XCSA3L/" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://x.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/share/17t5XCSA3L/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 
@@ -614,10 +661,10 @@
                 <div class="footer-col">
                     <h4>Contact Info</h4>
                     <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 802 Iona Tower, 33 Ross Way </li>
-                        <li><i class="fas fa-phone"></i> +44 07 4047 91351</li>
-                        <li><i class="fas fa-envelope"></i> billaljannat@yahoo.com</li>
-                        <li><i class="fas fa-clock"></i> 9am-9pm</li>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 802 Iona Tower, 33 Ross Way </li>
+                        <li><i class="fas fa-phone" aria-hidden="true"></i> +44 07 4047 91351</li>
+                        <li><i class="fas fa-envelope" aria-hidden="true"></i> billaljannat@yahoo.com</li>
+                        <li><i class="fas fa-clock" aria-hidden="true"></i> 9am-9pm</li>
                     </ul>
                 </div>
             </div>
@@ -638,19 +685,73 @@
           // Remove active class from all buttons
           document.querySelectorAll(".menu-nav-btn").forEach((btn) => {
             btn.classList.remove("active");
+            btn.removeAttribute("aria-current");
           });
 
           // Add active class to clicked button
           this.classList.add("active");
+          this.setAttribute("aria-current", "true");
 
           // Scroll to the target section
           const targetId = this.getAttribute("href");
           const targetSection = document.querySelector(targetId);
 
-          window.scrollTo({
-            top: targetSection.offsetTop - 100,
-            behavior: "smooth",
-          });
+          if (targetSection) {
+            window.scrollTo({
+              top: targetSection.offsetTop - 100,
+              behavior: "smooth",
+            });
+            
+            // Update URL without page reload
+            history.pushState(null, null, targetId);
+          }
+        });
+      });
+
+      // Update active navigation on scroll
+      function updateActiveNavOnScroll() {
+        const sections = document.querySelectorAll('.menu-category');
+        const navButtons = document.querySelectorAll('.menu-nav-btn');
+        
+        let currentSectionId = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 150;
+          const sectionHeight = section.offsetHeight;
+          
+          if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+            currentSectionId = section.getAttribute('id');
+          }
+        });
+        
+        navButtons.forEach(button => {
+          const href = button.getAttribute('href');
+          if (href === `#${currentSectionId}`) {
+            button.classList.add('active');
+            button.setAttribute('aria-current', 'true');
+          } else {
+            button.classList.remove('active');
+            button.removeAttribute('aria-current');
+          }
+        });
+      }
+
+      // Update active nav on scroll
+      window.addEventListener('scroll', updateActiveNavOnScroll);
+      
+      // Update active nav on page load
+      document.addEventListener('DOMContentLoaded', updateActiveNavOnScroll);
+
+      // Handle keyboard navigation for menu items
+      document.querySelectorAll('.menu-item').forEach((item, index) => {
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'article');
+        
+        item.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+          }
         });
       });
     </script>
